@@ -72,7 +72,7 @@ No Alberta Education PDFs, questions-only extracts, formula sheets or data bookl
 Edits made for publication, compared with the original run:
 
 - Local absolute paths in `runs/PROMPT.txt` (the 2022 Sonnet prompt) were made repo-relative.
-- Per-item answers (`answers.json` files), item scripts and outputs, derivations (`worked.md`, `derivations.json`), item-specific build scripts and per-item hash audits were removed from the published tree (Alberta copyright). Aggregate scores are unchanged. Earlier commits in this repository still contain them.
+- Per-item answers (`answers.json` files), item scripts and outputs, derivations (`worked.md`, `derivations.json`), item-specific build scripts and per-item hash audits were removed from the published tree (Alberta copyright). Aggregate scores are unchanged. The published history does not contain them either; see "History".
 - One internal scheduling reference in `PROGRESS.md` was reworded.
 
 ## History
