@@ -1,0 +1,259 @@
+{
+ "forms": [
+  {
+   "id": "m301-2019",
+   "title": "Mathematics 30-1 Released Items 2019 (January 2019 Form 1)",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/ed-diploma-exam-math-30-1-released-Items-2019.pdf",
+   "sha256": "B5A961F87847EFF1D531A602D8847F1CF929DA4164FE7BD1D0D1A48F2A6314DC",
+   "size": 5650875,
+   "pages": 71,
+   "questions_pages": [
+    8,
+    32
+   ],
+   "key_pages": [
+    5,
+    6,
+    7
+   ],
+   "solutions_from": 33,
+   "items": "MC 1-24, NR 1-8, WR 1-3",
+   "est_min": 25,
+   "questions_sha256": "8C083558CA1D7A9CF8BB0194F621C9F437503169764ACCDFD83DF228B8A6EE66",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-1-formula-sheet.pdf",
+   "formula_sha256": "6D65E98D0C3DA19B620ABB7EB3588146F240A817448B761A11708E59EB623A46",
+   "prepared": "2026-10-19T03:33:44"
+  },
+  {
+   "id": "m302-2021aug",
+   "title": "Mathematics 30-2 Released Items August 2021",
+   "url": "https://www.alberta.ca/system/files/edc-mathematics-30-2-released-items-august-2021.pdf",
+   "sha256": "7804B1DDF66E4D02EB6C964AE65FA4CBD79C3F39C17F20002B43342F1CC832C7",
+   "size": 2517377,
+   "pages": 46,
+   "questions_pages": [
+    8,
+    31
+   ],
+   "key_pages": [
+    5,
+    6,
+    7
+   ],
+   "solutions_from": 32,
+   "items": "MC 1-24, NR 1-8, WR 1-2",
+   "est_min": 22,
+   "questions_sha256": "9DA4F82A68C9B4296522644E58E3CE4E7AB648F12BDFA4FA001D6D3239FE8BE8",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-2-formula-sheet.pdf",
+   "formula_sha256": "40B0EC794880072CAB915D8EE3E04D4C3F91B1269E936FA9F76EB3DCDD3A3797",
+   "prepared": "2026-10-19T03:33:46"
+  },
+  {
+   "id": "m301-2017",
+   "title": "Mathematics 30-1 Released Items 2017 (April 2017)",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-math30-1-released-items-2017.pdf",
+   "sha256": "DBE0DBCFA32A4FB1DFE7F9546F42494CD3075D4638648C7FC697D7E3C20104C4",
+   "size": 17746520,
+   "pages": 30,
+   "questions_pages": [
+    7,
+    29
+   ],
+   "key_pages": [
+    5,
+    6
+   ],
+   "solutions_from": null,
+   "items": "MC 1-28, NR 1-12",
+   "est_min": 25,
+   "questions_sha256": "5B0EEA81764DBAE4A13111B55F48046DBD3CDC3B94EC877ACC9F938A4C826D24",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-1-formula-sheet.pdf",
+   "formula_sha256": "6D65E98D0C3DA19B620ABB7EB3588146F240A817448B761A11708E59EB623A46",
+   "prepared": "2026-10-19T03:34:19"
+  },
+  {
+   "id": "m302-2019apr",
+   "title": "Mathematics 30-2 Released Items April 2019",
+   "url": "https://www.alberta.ca/system/files/edc-mathematics-30-2-released-items-april2019.pdf",
+   "sha256": "35D8185C9D1B6849E1EE19980E66D5EA0B8EFEBA18A37D033D393650304B6EF3",
+   "size": 1871002,
+   "pages": 48,
+   "questions_pages": [
+    8,
+    32
+   ],
+   "key_pages": [
+    5,
+    6,
+    7
+   ],
+   "solutions_from": 33,
+   "items": "MC 1-24, NR 1-8, WR 1-2",
+   "est_min": 22,
+   "questions_sha256": "E7165D6A5032D1BB96C04936D7DC7833FA1505EF48908BDD7DC0D3F7021E52AA",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-2-formula-sheet.pdf",
+   "formula_sha256": "40B0EC794880072CAB915D8EE3E04D4C3F91B1269E936FA9F76EB3DCDD3A3797",
+   "prepared": "2026-10-19T03:34:21"
+  },
+  {
+   "id": "m301-2016",
+   "title": "Mathematics 30-1 Released Items 2016 (April 2016)",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-math30-1-released-items-2016.pdf",
+   "sha256": "1BD63928300E714A7AAC11D26FC9C945499B15F8E07DE3FA71E06C06A07141CB",
+   "size": 17378169,
+   "pages": 31,
+   "questions_pages": [
+    7,
+    30
+   ],
+   "key_pages": [
+    5,
+    6
+   ],
+   "solutions_from": null,
+   "items": "MC 1-28, NR 1-12",
+   "est_min": 25,
+   "questions_sha256": "05543018C8E4B8E553249D035BD7C2D5FC30A07A551452D387DD66730847E1C1",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-1-formula-sheet.pdf",
+   "formula_sha256": "6D65E98D0C3DA19B620ABB7EB3588146F240A817448B761A11708E59EB623A46",
+   "prepared": "2026-10-19T03:34:27"
+  },
+  {
+   "id": "m302-2019jan",
+   "title": "Mathematics 30-2 Released Items January 2019",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/ed-mathematics-30-2-released-materials-2019.pdf",
+   "sha256": "A77556F513D889089931DCDC5A7B7B6EEA49A657D598ABE1D39D2B0971ABAFC0",
+   "size": 4089139,
+   "pages": 58,
+   "questions_pages": [
+    8,
+    32
+   ],
+   "key_pages": [
+    5,
+    6,
+    7
+   ],
+   "solutions_from": 33,
+   "items": "MC 1-24, NR 1-8, WR 1-2",
+   "est_min": 22,
+   "questions_sha256": "1DBC80BBF8A2C6FA38EBF24FECB790DE985A3EF6A3937EF64273AD3FE1E21ABC",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-2-formula-sheet.pdf",
+   "formula_sha256": "40B0EC794880072CAB915D8EE3E04D4C3F91B1269E936FA9F76EB3DCDD3A3797",
+   "prepared": "2026-10-19T03:34:29"
+  },
+  {
+   "id": "m302-2016",
+   "title": "Mathematics 30-2 Released Items 2016 (August 2013 exam)",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-math30-2-released-items-2016.pdf",
+   "sha256": "AEE002759401B39ACF1A717325CE6E037744A1BA9E46B1FFE5113A901B68A32F",
+   "size": 16811369,
+   "pages": 31,
+   "questions_pages": [
+    7,
+    30
+   ],
+   "key_pages": [
+    5,
+    6
+   ],
+   "solutions_from": null,
+   "items": "MC 1-28, NR 1-12",
+   "est_min": 22,
+   "questions_sha256": "3F172D9BC031181AD0FCFB318CCEFD801A6A2FF39634914EAEAE2AFA4CA04F88",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-2-formula-sheet.pdf",
+   "formula_sha256": "40B0EC794880072CAB915D8EE3E04D4C3F91B1269E936FA9F76EB3DCDD3A3797",
+   "prepared": "2026-10-19T03:34:33"
+  },
+  {
+   "id": "m302-2013",
+   "title": "Mathematics 30-2 Released Items 2013 (January 2013)",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-math30-2-released-items-2013.pdf",
+   "sha256": "6E2968A55367DCD079B79B74F83254085156FB8EA635BDFB44085A4DF4ECA1DC",
+   "size": 16726967,
+   "pages": 30,
+   "questions_pages": [
+    7,
+    29
+   ],
+   "key_pages": [
+    5,
+    6
+   ],
+   "solutions_from": null,
+   "items": "MC 1-28, NR 1-12",
+   "est_min": 22,
+   "questions_sha256": "2702C22A93CB4661ADA83A1FBC9F3863A92C774FEA2FB52D1760C6A4ABF1D534",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-2-formula-sheet.pdf",
+   "formula_sha256": "40B0EC794880072CAB915D8EE3E04D4C3F91B1269E936FA9F76EB3DCDD3A3797",
+   "prepared": "2026-10-19T03:34:37"
+  },
+  {
+   "id": "m301-2014",
+   "title": "Mathematics 30-1 Released Items 2014 (Nov 2012 and Jan 2014 items)",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-math30-1-released-items-2014.pdf",
+   "sha256": "F96C9CED4061137159CFD365141B1BBB46F58989BA3CD46D9D2C75A4DD6E2D31",
+   "size": 2277772,
+   "pages": 16,
+   "questions_pages": [
+    6,
+    15
+   ],
+   "key_pages": [
+    5
+   ],
+   "solutions_from": null,
+   "items": "14 machine-scored items, ids as printed",
+   "est_min": 16,
+   "questions_sha256": "6ECA831C3744569CE00DD27B783AF02F6055D54A5471FB671E63D6C8E6493F44",
+   "formula_url": "https://www.alberta.ca/system/files/edc-diploma-math-30-1-formula-sheet.pdf",
+   "formula_sha256": "6D65E98D0C3DA19B620ABB7EB3588146F240A817448B761A11708E59EB623A46",
+   "prepared": "2026-10-19T03:34:39"
+  },
+  {
+   "id": "p30-2013",
+   "title": "Physics 30 Released Items 2013 (June 2009 exam)",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-physics30-released-items-2013.pdf",
+   "sha256": "22EE87B9FFBBCA5599B11E06D596BE85B7EDED155C4B4993694C2C168B1F1F43",
+   "size": 17900116,
+   "pages": 54,
+   "questions_pages": [
+    6,
+    38
+   ],
+   "key_pages": [
+    5
+   ],
+   "solutions_from": 39,
+   "items": "MC and NR ids as printed, WR 1-3",
+   "est_min": 30,
+   "questions_sha256": "42FFD4849600434588FB13DFC46D716AE3CAF08CA0D628A41359E9BDE2F0F71E",
+   "formula_url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-physics30-data-booklet.pdf",
+   "formula_sha256": "5651387018F0B268A266DB8927DD1554647ED9F416CC3C0EF4CC8FEA1667E710",
+   "prepared": "2026-10-19T03:35:52"
+  },
+  {
+   "id": "c30-2019",
+   "title": "Chemistry 30 Released Items 2019 (November 2018 exam)",
+   "url": "https://www.alberta.ca/system/files/custom_downloaded_images/ed-chemistry-30-released-items-2019.pdf",
+   "sha256": "8CCACF95EA37EFD16316EA2DD90A6C6E94009F2853FADC59583160B08A82BC7F",
+   "size": 2836648,
+   "pages": 39,
+   "questions_pages": [
+    7,
+    38
+   ],
+   "key_pages": [
+    5,
+    6
+   ],
+   "solutions_from": null,
+   "items": "MC 1-44, NR 1-16, ids as printed",
+   "est_min": 30,
+   "questions_sha256": "1B9D234553C002289D0F7450225E33E30E7C5437C45149220883B7B158B18DAC",
+   "formula_url": "https://www.alberta.ca/system/files/custom_downloaded_images/edc-chemistry30-data-booklet.pdf",
+   "formula_sha256": "F4ECE0B308774EC2A16A79F8BE5F8EB4C9AED14E881F0425DB33F17E106C7AE6",
+   "prepared": "2026-10-19T03:51:59"
+  }
+ ]
+}

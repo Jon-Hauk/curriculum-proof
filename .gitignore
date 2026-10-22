@@ -1,0 +1,36 @@
+# Official Alberta Education material (Crown copyright) is never committed.
+sources/
+answer-pass/
+*.pdf
+source-pages/
+runs/codex/*/pages/
+runs/codex/*/extract/
+*extracted*
+read_questions.out
+# Console and run logs
+console*
+runs/codex/logs/
+*.log
+*.err
+# Local caches and locks
+__pycache__/
+*.pyc
+matplotlib-config/
+*.lock
+
+# Item-derived content kept private (Alberta copyright): per-item answers, solver/check scripts, derivations
+**/answers.json
+runs/codex/**/items/
+runs/codex/items/
+runs/codex/**/worked.md
+runs/codex/worked.md
+runs/codex/m301-2019/*.py
+!runs/codex/m301-2019/README.md
+runs/codex/p30-2013/build_pass.py
+runs/codex/p30-2013/artifact-audit.json
+runs/codex/m301-2019/derivations.json
+runs/codex/build_worked.*
+runs/codex/check-history/
+runs/codex/repair_check_comparison.*
+runs/codex/completion.json
+runs/codex/last-message.txt

@@ -1,0 +1,9 @@
+Read only answer-pass/questions-only.pdf. It is the question section of one mathematics practice test. Answer every multiple-choice item, every numerical-response item, and every written-response item in that file.
+
+This is one attempt. Do not open any other file. Do not use the web. Do not search for this test. Do not revise an answer after you have written the file.
+
+Write JSON only to answer-pass/answers.json with this shape:
+
+{"items": [{"id": "NR 1", "answer": "..."}, {"id": "MC 1", "answer": "<letter>"}]}
+
+Use the item labels printed in the file. A multiple-choice answer is one letter. A numerical-response answer is the number or digit string the item asks for. A written-response answer is the full response. Include every item.
