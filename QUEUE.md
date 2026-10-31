@@ -6,3 +6,4 @@ Rolling queue for CODEX-QUEUE.md. Codex sets status to in-progress, then retired
 |---|---|---|---|---|---|---|
 | 1 | m301-2019 | Mathematics 30-1 Released Items 2019 (January 2019 Form 1) | MC 1-24, NR 1-8, WR 1-3 | 25 | retired | 2026-10-19 04:00 (marked by supervisor) |
 | 2 | p30-2013 | Physics 30 Released Items 2013 (June 2009 exam) | MC and NR ids as printed, WR 1-3 | 30 | retired | 2026-10-19 04:12:50 -0600 |
+| 4 | c30-2019 | Chemistry 30 Released Items 2019 (November 2018 exam) | MC 1-44, NR 1-16, ids as printed | 30 | retired | 2026-10-31 07:26:21 -06:00 |
