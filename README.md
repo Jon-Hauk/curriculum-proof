@@ -26,12 +26,16 @@ Official PDFs (alberta.ca):
 
 **Every item gets four artifacts (kept privately).** For each item id (`MC n`, `NR n`, `WR n`) Codex writes a Python calculation (sympy for exact work, numpy/scipy for numerics, mpmath for high precision), the real output of running it, an independent check by a different route ending in `agree` or `disagree`, and a short derivation that quotes the saved output, plus an `answers.json` per form. A recorded answer is never replaced; a `disagree` is flagged for review, not fixed by re-answering. These artifacts encode the item content, so they are not published; only per-form `completion.json` counts are. See `runs/ITEMS-PRIVATE.md`.
 
-**Queue.** `Invoke-CodexLoop.ps1` supervises passes over `QUEUE.md` using the prompt in `CODEX-QUEUE.md`, checks that every item has all four artifacts, flags disagreements and gaps in `PROGRESS.md`, and commits locally. `prepare_forms.py` downloads forms listed in it, verifies hashes, cuts the questions-only extracts and writes `forms.json` and the per-form protocols. Protocols exist for more forms than were run; only m301-2019 and p30-2013 were queued.
+**Queue.** `Invoke-CodexLoop.ps1` supervises passes over `QUEUE.md` using the prompt in `CODEX-QUEUE.md`, checks that every item has all four artifacts, flags disagreements and gaps in `PROGRESS.md`, and commits locally. `prepare_forms.py` downloads forms listed in it, verifies hashes, cuts the questions-only extracts and writes `forms.json` and the per-form protocols. Protocols exist for more forms than were run; only m301-2019 and p30-2013 were queued. `-Model` and `-ReasoningEffort` pin the Codex model for a run instead of reading the local config.
 
 ## Disagreements and lessons
 
 - **m301-2019 MC 5 (disagreement resolved).** The calculation and its check disagreed. Diagnosis: the check counted dark bands along a line in a raster rendering of the figure, and one printed stroke produced three bands within 1 PDF point. Grouped, the count supported the recorded answer. An independent second opinion from Veridian (a multi-agent review run through Jon's Hermes agent, given only the question page) agreed with the recorded answer. The recorded answer was not changed. See `PROGRESS.md`.
 - **p30-2013 NR 2 (the one miss).** Codex's numerical response did not match the key. The unrounded value landed on a rounding boundary for the digits to be recorded, and computing it through SI constants (h in J·s, then converting joules to electronvolts) rounded differently from using the data booklet's constant in eV·s directly. The check did not catch it, because it rebuilt the input from the recorded answer instead of re-deriving the value. Rules added afterwards to `CODEX-QUEUE.md`: use the booklet constant in the units the answer needs, compute both routes near a rounding boundary, and never let a check rebuild inputs from the recorded answer. The rules were added after the run and have not yet been tested on a new form.
+
+## Pre-registered runs
+
+- **c30-2019, Chemistry 30 Released Items 2019: pre-registered 2026-10-31, not yet run.** [`PREREG-c30-2019.md`](PREREG-c30-2019.md) fixes the model, the prompt, the file hashes, the scoring rule and what gets published, before any answer exists. It is the first test of the precision rules above. It will be scored by `grade_form.py`, which reads the key from the local PDF and writes only the total and the miss ids.
 
 ## Results
 

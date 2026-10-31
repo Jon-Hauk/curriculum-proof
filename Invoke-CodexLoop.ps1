@@ -6,7 +6,9 @@ param(
   [int]$MaxPassMinutes = 100,        # a pass longer than this is stopped and resumed by the next pass
   [int]$QueueAheadMinutes = 180,
   [string[]]$TargetForms = @("m301-2019", "p30-2013"),  # the targeted queue; nothing else is queued
-  [switch]$Refill                     # only with -Refill are other prepared forms appended from forms.json
+  [switch]$Refill,                    # only with -Refill are other prepared forms appended from forms.json
+  [string]$Model = "",                # optional codex -m override; empty uses ~/.codex/config.toml
+  [string]$ReasoningEffort = ""       # optional model_reasoning_effort override; empty uses the config
 )
 $ErrorActionPreference = "Continue"
 $TargetForms = @($TargetForms | ForEach-Object { $_ -split "," } | Where-Object { $_ })
@@ -237,12 +239,14 @@ try {
     $stamp = Get-Date -Format "yyyyMMdd-HHmmss"
     $out = Join-Path $LogDir "pass-$stamp.log"; $err = Join-Path $LogDir "pass-$stamp.err"
     $cargs = @("exec", "--skip-git-repo-check", "--color", "never", "--approve-for-me", "-C", "`"$Root`"", "--add-dir", "`"$(Join-Path $Root 'answer-pass')`"", "-o", "`"$(Join-Path $LogDir "last-message-$stamp.txt")`"")
+    if ($Model) { $cargs += @("-m", $Model) }
+    if ($ReasoningEffort) { $cargs += @("-c", "model_reasoning_effort=$ReasoningEffort") }
     $start = Get-Date
     $p = Start-Process -FilePath $Codex -ArgumentList $cargs -RedirectStandardInput (Join-Path $Root "CODEX-QUEUE.md") -RedirectStandardOutput $out -RedirectStandardError $err -WindowStyle Hidden -PassThru
     $null = $p.Handle
     Set-Content -Path $Lock -Value $PID -Encoding ascii
     Log "PASS_START form $($cur.id) codex pid $($p.Id) usage $(UsageText $u)"
-    AppendProgress "- $($start.ToString('HH:mm')) pass start: form $($cur.id), codex pid $($p.Id), usage at launch $(UsageText $u)."
+    AppendProgress "- $($start.ToString('HH:mm')) pass start: form $($cur.id), codex pid $($p.Id), model $(if ($Model) { $Model } else { 'from config' }) effort $(if ($ReasoningEffort) { $ReasoningEffort } else { 'from config' }), usage at launch $(UsageText $u)."
     $why = "exit"
     while (-not $p.HasExited) {
       Start-Sleep 15
