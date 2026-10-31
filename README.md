@@ -1,5 +1,7 @@
 # curriculum-proof
 
+**Case study:** [`CASE_STUDY.md`](CASE_STUDY.md) is the short version of what this pipeline did: 123 items worked across three forms, 113 of 114 machine-scored items correct, and how the one miss and the one disagreement were handled.
+
 A small, script-verified pipeline for working Alberta Education diploma practice and released-item forms with AI tools, and for scoring the machine-scored items against the published keys. Jon Hauk designed and ran it. The AI tools did the work they are credited with below; every number in the outputs comes from a script that actually ran.
 
 This repository contains the harness, the protocols, aggregate scores and the logs. The per-item solver scripts, outputs, checks, derivations and per-item answers are kept privately because they encode the copyrighted Alberta item content; see [`runs/ITEMS-PRIVATE.md`](runs/ITEMS-PRIVATE.md). It contains no Alberta Education material (see "Copyright" below).
