@@ -29,8 +29,9 @@ from pypdf import PdfReader
 
 ROOT = Path(__file__).resolve().parent
 FORMS = ROOT / "forms.json"
-OUTCOME = re.compile(r"\b[A-D]\d+\.\d+[a-z]+")
 ROW = re.compile(r"^(MC|NR)\s*(\d+)\s+(.*)$")
+DIFFICULTY = re.compile(r"^\d+(\.\d+)?%\s*")
+VALUE = re.compile(r"^(-?\d*\.?\d+)\s*(,)?\s*")
 FOOTNOTE = re.compile(r"^\*NR\s*(\d+):\s*(.*)$")
 LIST_TAIL = re.compile(r"^[\d.,\s]+$")
 
@@ -51,6 +52,18 @@ def norm(value: str) -> str:
 
 def split_values(text: str) -> set[str]:
     return {norm(part) for part in text.split(",") if norm(part)}
+
+
+def leading_values(text: str) -> tuple[list[str], str]:
+    """Split "12.5, 13 (any order) RF 1" into (["12.5", "13"], "(any order) RF 1")."""
+    values: list[str] = []
+    rest = text.strip()
+    while match := VALUE.match(rest):
+        values.append(match.group(1))
+        rest = rest[match.end() :]
+        if not match.group(2):
+            break
+    return values, rest
 
 
 def expected_ids(items: str) -> list[str]:
@@ -90,21 +103,34 @@ def load_key(pdf: Path, pages: list[int], ids: list[str]) -> dict[str, Key]:
         if not row:
             continue
         item_id = f"{row.group(1)} {row.group(2)}"
-        outcome = OUTCOME.search(row.group(3))
-        raw = row.group(3)[: outcome.start()].strip() if outcome else row.group(3).strip()
+        # some forms print a difficulty percentage before the key; a value list
+        # ending in a comma continues on the next line
+        raw = DIFFICULTY.sub("", row.group(3).strip())
+        for tail in lines[index + 1 :]:
+            if not raw.rstrip().endswith(","):
+                break
+            raw += " " + tail
         if item_id.startswith("MC"):
             key[item_id] = Key({norm(raw.split()[0])})
         elif raw.startswith("*"):
             pending.add(item_id)
         else:
-            any_order = "(any order)" in raw
-            key[item_id] = Key(split_values(raw.replace("(any order)", "")), any_order)
+            values, rest = leading_values(raw)
+            key[item_id] = Key({norm(v) for v in values}, rest.startswith("(any order)"))
     for item_id in pending:
         if item_id not in footnotes:
             raise SystemExit(f"{item_id} points to a footnote that was not found")
         key[item_id] = Key(split_values(footnotes[item_id]))
     if sorted(key) != sorted(ids) or any(not k.accepted for k in key.values()):
         raise SystemExit(f"key pages yielded {len(key)} usable items, expected {len(ids)}")
+    # a layout the parser does not know shows up here, not as a wrong score
+    for item_id, k in key.items():
+        if item_id.startswith("MC"):
+            ok = len(k.accepted) == 1 and next(iter(k.accepted)) in {"A", "B", "C", "D"}
+        else:
+            ok = all(re.fullmatch(r"-?\d*\.?\d+", v) for v in k.accepted)
+        if not ok:
+            raise SystemExit(f"{item_id}: key value is not a letter A-D or a number; layout not understood")
     return key
 
 

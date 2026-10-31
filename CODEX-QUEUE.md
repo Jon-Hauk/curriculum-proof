@@ -9,7 +9,7 @@ Codex is the calculator. Codex does not grade. This file is the prompt for every
 3. Read `PROTOCOL-<form-id>.md`, then read only `answer-pass/<form-id>/questions-only.pdf` and the allowed reference `answer-pass/<form-id>/formula-sheet.pdf`.
 4. Write all output under `runs/codex/<form-id>/`:
    - `items/<ID>.py` and `items/<ID>.out` for every item, where `<ID>` is the item id with the space replaced by a dash (`MC 7` becomes `MC-7`, `NR 3` becomes `NR-3`, `WR 1` becomes `WR-1`). The `.out` file is the real output of running the `.py` file with Python. Exact work uses sympy, numerical work uses numpy and scipy, high precision uses mpmath.
-   - `answers.json` as `{"form":"<form-id>","items":[{"id":"MC 1","answer":"<letter>"},{"id":"NR 1","answer":"<digits>"},{"id":"WR 1","answer":"short final result"}]}`. Multiple-choice answers are a single letter. Numerical-response answers are the digits a student would record, as the question instructs.
+   - `answers.json` as `{"form":"<form-id>","items":[{"id":"MC 1","answer":"<letter>"},{"id":"NR 1","answer":"<recorded value>"},{"id":"WR 1","answer":"short final result"}]}`. Multiple-choice answers are a single letter. A numerical-response answer is the value exactly as a student would record it, as the question instructs, including its decimal point: 2.5 is recorded as `2.5`, never `25`, and a value below 1 keeps its leading zero (`0.5`, not `.5` or `05`).
    - `items/<ID>-check.py` and `items/<ID>-check.out` for every item that has an answer. The check re-derives the value by a different route (substitution, numeric evaluation, brute force or simulation) and its last line is exactly `agree` or `disagree`. A check never changes the answer.
    - `worked.md` with one short derivation per id, each quoting the script output it relies on.
    - `completion.json` as `{"form":"<form-id>","items":N,"answered":N,"checks_agree":N,"checks_disagree":N,"finished":"<ISO time>"}` with the real counts.
@@ -45,3 +45,9 @@ Forms are prepared with `py -3 prepare_forms.py` (downloads to `sources/`, cuts 
 - When the data booklet or formula sheet gives a constant in the units the answer needs (for example h in eV*s), use that constant directly instead of converting from SI. Rounding can depend on which route is taken.
 - If an unrounded value lies within 0.5% of a rounding boundary for the recorded digits, compute it by both routes and note the boundary in worked.md. Keep one answer.
 - A check must re-derive the value by a different route from the question. It must not reconstruct the inputs from the recorded answer.
+
+## Recording and check rules (added 2026-10-31 after c30-2019)
+
+- Record numerical responses with their decimal point and leading zero, as step 4 says. Recording `25` for 2.5 is a wrong answer even when the value is right.
+- The check compares the recorded form as well as the value. It formats its own result the way the question says to record it and compares that string with the recorded answer. If either the value or the recorded string differs, its last line is `disagree`.
+- The calculation and the check each begin with a comment listing the assumptions that affect the value (which masses, quantities, constants and conventions they use) and where in the question or the reference sheet each one comes from. `worked.md` names, for each item, any assumption the two share. A check that shares an assumption the question does not state cannot confirm that assumption.
