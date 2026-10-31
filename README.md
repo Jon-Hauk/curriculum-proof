@@ -31,11 +31,16 @@ Official PDFs (alberta.ca):
 ## Disagreements and lessons
 
 - **m301-2019 MC 5 (disagreement resolved).** The calculation and its check disagreed. Diagnosis: the check counted dark bands along a line in a raster rendering of the figure, and one printed stroke produced three bands within 1 PDF point. Grouped, the count supported the recorded answer. An independent second opinion from Veridian (a multi-agent review run through Jon's Hermes agent, given only the question page) agreed with the recorded answer. The recorded answer was not changed. See `PROGRESS.md`.
-- **p30-2013 NR 2 (the one miss).** Codex's numerical response did not match the key. The unrounded value landed on a rounding boundary for the digits to be recorded, and computing it through SI constants (h in J·s, then converting joules to electronvolts) rounded differently from using the data booklet's constant in eV·s directly. The check did not catch it, because it rebuilt the input from the recorded answer instead of re-deriving the value. Rules added afterwards to `CODEX-QUEUE.md`: use the booklet constant in the units the answer needs, compute both routes near a rounding boundary, and never let a check rebuild inputs from the recorded answer. The rules were added after the run and have not yet been tested on a new form.
+- **p30-2013 NR 2 (the one miss).** Codex's numerical response did not match the key. The unrounded value landed on a rounding boundary for the digits to be recorded, and computing it through SI constants (h in J·s, then converting joules to electronvolts) rounded differently from using the data booklet's constant in eV·s directly. The check did not catch it, because it rebuilt the input from the recorded answer instead of re-deriving the value. Rules added afterwards to `CODEX-QUEUE.md`: use the booklet constant in the units the answer needs, compute both routes near a rounding boundary, and never let a check rebuild inputs from the recorded answer. The rules were added after the run; their first test is the pre-registered c30-2019 run below.
 
 ## Pre-registered runs
 
-- **c30-2019, Chemistry 30 Released Items 2019: pre-registered 2026-10-31, not yet run.** [`PREREG-c30-2019.md`](PREREG-c30-2019.md) fixes the model, the prompt, the file hashes, the scoring rule and what gets published, before any answer exists. It is the first test of the precision rules above. It will be scored by `grade_form.py`, which reads the key from the local PDF and writes only the total and the miss ids.
+- **c30-2019, Chemistry 30 Released Items 2019: 56 of 60.** Pre-registered 2026-10-31 06:59 MDT; run 07:11 to 07:26 MDT in one 15-minute pass. [`PREREG-c30-2019.md`](PREREG-c30-2019.md) fixed the model, the prompt, the file hashes, the scoring rule and what gets published before any answer existed. Scored by `grade_form.py` into [`SCORE-c30-2019.md`](SCORE-c30-2019.md). All 60 items have all four artifacts, and the checks came out 60 agree, 0 disagree.
+  - **All four misses had an `agree` check** (NR 2, NR 4, NR 7, NR 13), so the pipeline flagged none of them.
+  - **NR 4, NR 7, NR 13: right value, recorded without its decimal point.** In each, the computed value equals the key, but the recorded digits drop the point. None of the 16 numerical responses on this form has a decimal point, against 5 of 18 on m301-2019 and p30-2013. The likely cause is the prompt: its `answers.json` format line shows `<digits>`, where the prompt those two forms read showed an example value with a decimal point. The line was changed so that the published prompt is the one Codex reads, and the pre-registration disclosed the change. The checks compared values, so they could not see a recording error.
+  - **NR 2: a modelling miss.** In a calorimetry item, Codex used the total solution mass, including the dissolved solids, where the key's value corresponds to the mass of the water alone. The check summed heat capacities over the same total mass, so it shared the assumption and agreed.
+  - **The precision rules.** None of the four misses is a failure they target: a rounding-route difference, or a check rebuilt from the recorded answer. The boundary rule fired on four numerical responses (NR 2, NR 4, NR 8, NR 16), each computed by two routes. NR 8 and NR 16 are correct; NR 2 and NR 4 missed for the reasons above, not rounding.
+  - **For the next prompt version, not applied to this run:** say that a recorded numerical response keeps its decimal point, have the check compare the recorded string as well as the value, and have the check state its modelling assumptions so that a shared one is visible.
 
 ## Results
 
@@ -47,11 +52,12 @@ Machine-scored items only (multiple choice and numerical response). Written resp
 | Mathematics 30-1 Practice Test 2022 | Codex as Python calculator | 32 | 32 | none |
 | Mathematics 30-1 Released Items 2019 (m301-2019) | Codex as Python calculator | 32 | 32 | none |
 | Physics 30 Released Items 2013 (p30-2013) | Codex as Python calculator | 50 | 49 | NR 2 |
+| Chemistry 30 Released Items 2019 (c30-2019), pre-registered | Codex as Python calculator | 60 | 56 | NR 2, NR 4, NR 7, NR 13 |
 
 Caveats:
 
 - The forms are public and may be in the models' training data. This is not a claim about unseen problems.
-- Only the Sonnet 2022 score is produced by a script in this repository (`grade_machine.py` → `SCORE.md`). The three Codex scores were computed by the director against the official keys outside this repository; that comparison is not included because it would reproduce the keys. You can repeat it by re-running the pipeline and comparing its answers with the key pages of the downloaded PDF (page indexes are in the protocols and `forms.json`).
+- Two scores are produced by scripts in this repository: Sonnet's 2022 score (`grade_machine.py` → `SCORE.md`) and the c30-2019 score (`grade_form.py` → `SCORE-c30-2019.md`). The other three Codex scores were computed by the director against the official keys outside this repository; that comparison is not included because it would reproduce the keys. You can repeat it by re-running the pipeline and comparing its answers with the key pages of the downloaded PDF (page indexes are in the protocols and `forms.json`).
 - The two 2022 rows are not a fair head-to-head: Sonnet had no tools, while Codex wrote and ran Python and could view rendered figures.
 - Written responses are not marked by anyone, human or model.
 - One run per form, one sample per item. No error bars.
