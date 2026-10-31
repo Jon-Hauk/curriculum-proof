@@ -42,3 +42,22 @@
 - NR 2: total solution mass used where the key's value corresponds to the water's mass alone; the check summed heat capacities over the same mass, so it shared the assumption.
 - Boundary rule fired on NR 2, NR 4, NR 8 and NR 16 (two routes each). NR 8 and NR 16 correct; no miss is a rounding-route failure.
 - AUDIT: the pass log shows no access to sources/ and no network calls. 'limit message in log' was again a false match on the prompt text echoed to console.err; usage after the pass was 5h 85%, weekly 45%.
+
+## Supervisor block 2026-10-31 09:05 to 16:00 Denver (Invoke-CodexLoop.ps1, pid 16640)
+
+- 11:25 pass start: form m301-2017, codex pid 20168, model gpt-6-astra effort xhigh, usage at launch 5h 87% (resets 11:19), weekly 46% (resets 2026-11-03 23:35).
+- 11:33 pass end (exit, code 0, 8.5 min): form m301-2017 status retired; items 40; checks 38 agree / 2 disagree; full bar met; commit 9c114dc; usage 5h 24% (resets 16:25), weekly 49% (resets 2026-11-03 23:35); limit message in log
+  - REVIEW m301-2017: disagree checks on MC-11, MC-23 (answers kept as written, not re-answered).
+- 11:35 TARGET_QUEUE_RETIRED: every targeted form is retired. Supervisor stops cleanly; no refill with other material.
+- 11:35 supervisor exit.
+
+## Review 2026-10-31 11:40 Denver
+
+- SCORED m301-2017 with grade_form.py against the pre-registration (PREREG-m301-2017.md): 40/40, no misses (SCORE-m301-2017.md). Cross-checked privately with a second PDF library and an independent row parser: 40/40, and the same parser scores a deliberately wrong answer set 0/40.
+- MC 11 (disagree, recorded answer right): the calculation read the polynomial's two root parameters as distinct and its assumption header flagged that the question does not state it; the check also tested the equal case the printed conditions allow, which leaves a different option, so it disagreed. The distinct reading matches the key. Rule 3 surfaced the assumption instead of letting the check share it.
+- MC 23 (disagree, recorded answer right): the check chose the same letter, and its recorded-string comparison was true; its value comparison tested two equivalent symbolic expressions for literal equality and failed. A false alarm in Codex's own check harness, not in the recorded answer.
+- Rule 1: 2 of 12 numerical responses recorded with a decimal point, on the 2 items whose key has one; no value-right, recording-wrong miss.
+- Rule 2: every check compared its independently formatted response with the recorded string; no recording miss.
+- Rule 3: worked.md has a shared-assumption entry for all 40 items, each citing the question page for its givens; 3 (MC 9, MC 11, MC 21) name an unstated assumption or convention. No miss, so the "named the assumption that caused a miss" test did not arise.
+- Rounding boundary noted on 3 items (NR 6, NR 8, NR 12), each computed by two routes; all correct.
+- AUDIT: one 8.5-minute pass, 85,594 tokens, Codex 0.165.0, gpt-6-astra at xhigh. The pass log shows no access to sources/ or other forms' runs and no network calls; the frozen files are unchanged since 1486f69; build and run scripts executed once and the only later edit was a note in worked.md. 'limit message in log' was again a false match on the prompt text. The launch usage figure (5h 87%) predates the 11:19 reset; after the pass it was 5h 24%.
