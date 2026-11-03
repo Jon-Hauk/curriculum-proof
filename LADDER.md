@@ -6,12 +6,12 @@ The pipeline has so far worked Alberta Grade 12 diploma forms, which have one ri
 
 | Rung | Material | Grader | Status |
 |---|---|---|---|
-| 0 | Alberta Grade 12 diploma forms (Math 30-1, Physics 30, Chemistry 30) | Official key, `grade_machine.py` / `grade_form.py` | 4 forms run (the 2022 form twice); m301-2017 pre-registered, not run |
+| 0 | Alberta Grade 12 diploma forms (Math 30-1, Physics 30, Chemistry 30) | Official key, `grade_machine.py` / `grade_form.py` | 5 forms run (the 2022 form twice); pre-registered m301-2017 scored 40 of 40 |
 | 1 | University calculus (MIT OpenCourseWare Scholar exams) | Final-answer equivalence in sympy, `grade_open.py` (to write) | Not prepared |
 | 2 | Undergraduate pure mathematics in Lean 4 (ProofNet) | The Lean proof checker, `grade_lean.py` (to write) | Not prepared |
 | 3 | Competition mathematics in Lean 4 (PutnamBench) | The Lean proof checker | Not prepared |
 
-Rung 0 finishes with m301-2017, which tests the recording and check rules written after c30-2019 (see `PREREG-m301-2017.md`). The other prepared Alberta forms are the same level or lower (Mathematics 30-2 is the less advanced stream), so they widen rung 0 rather than climb.
+Rung 0 is complete. The pre-registered m301-2017 run on 2026-10-31 tested the recording and check rules written after c30-2019 (see `PREREG-m301-2017.md`) and scored 40 of 40; its two `disagree` checks were reviewed. The other prepared Alberta forms are the same level or lower (Mathematics 30-2 is the less advanced stream), so they widen rung 0 rather than climb.
 
 There is no Alberta rung above Mathematics 30-1. Mathematics 31, Alberta's calculus course, has no diploma exam, so no Alberta form with an official key exists for it. Rung 1 covers the same ground and continues past it.
 
@@ -62,7 +62,7 @@ This is the property every earlier rule has been reaching for. A Python check ca
 - One run, one sample per item, no error bars, as at rung 0.
 - At rungs 2 and 3, "proved" means proved as formalized.
 
-## Next step after m301-2017
+## Next step
 
 The director prepares 18.01SC Exam 1: download the exam and solutions, record their SHA-256 hashes, cut a questions-only extract, write the key file and the unscored list, write and test `grade_open.py`, then publish the pre-registration before the answerer sees anything.
 
