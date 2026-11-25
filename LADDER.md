@@ -35,12 +35,17 @@ There is no Alberta rung above Mathematics 30-1. Mathematics 31, Alberta's calcu
 
 **The grader is the proof checker.** No answer key is needed. An item counts as proved only if all of these hold, checked by `grade_lean.py`, which is not the answerer:
 
-- The theorem statement is byte-identical to the frozen one (its hash is in the protocol). The answerer may never edit a statement.
-- The file builds with the Lean version and Mathlib commit pinned in the protocol.
+- The answerer submits only the proof body, never a whole file. `grade_lean.py` assembles the file itself: the frozen header and theorem statement (their hash is in the protocol), then the submitted body. The answerer may never edit a statement.
+- The assembled file builds with the Lean version and Mathlib commit pinned in the protocol.
 - The proof contains no `sorry` or `admit`.
 - `#print axioms` for the theorem lists nothing beyond `propext`, `Classical.choice` and `Quot.sound`.
+- The build output is re-checked by a second checker that replays every declaration through the kernel independently of the build, so a bug in the elaborator, or in one kernel, cannot pass a proof on its own. Candidates: `lean4checker`, or a separate kernel implementation. Confirm what is current and maintained when `grade_lean.py` is written, and pin it in the protocol.
 
 This is the property every earlier rule has been reaching for. A Python check can share the answerer's assumption, as c30-2019 NR 2 showed. A proof checker cannot be talked into agreeing.
+
+**Why the grader assembles the file (added 2026-11-24).** A hash of the statement freezes its text, not what its names mean. If the answerer controls the whole file, it can add its own definitions, instances or notation above the theorem, and the byte-identical statement then means something easier while still compiling green. In the 2026 AI-math verification pipelines this is the job of a separate comparator step, which checks that a proof has not redefined the symbols its statement uses. Assembling the file in the grader removes that route rather than detecting it.
+
+**`grade_lean.py` is tested before the pre-registration, and is not trusted from the answerer.** It must accept one known-good proof and reject each of these deliberately bad submissions: a body using `sorry`; a body that introduces an extra axiom; a submission that tries to add a definition or instance; a whole file with an edited statement. If the answerer (Codex) drafts it, a different agent reviews it and runs those negative controls, because an answerer that writes its own grader can make the grader agree with it.
 
 **The remaining weak spot is the statement, not the proof.** A formal statement can say something other than the textbook theorem. A valid proof of a misformalized statement proves the wrong thing. Use the benchmark's statements as published, record any known errata in the protocol, and report proved items as "proved as formalized".
 
@@ -71,3 +76,4 @@ The director prepares 18.01SC Exam 1: download the exam and solutions, record th
 - MIT OpenCourseWare, 18.01SC Single Variable Calculus, Fall 2010, final exam solutions: https://ocw.mit.edu/courses/18-01sc-single-variable-calculus-fall-2010/resources/mit18_01scf10_finalsol/
 - ProofNet repository: https://github.com/zhangir-azerbayev/proofnet
 - PutnamBench paper: https://arxiv.org/abs/2407.11214
+- Quanta Magazine, verification workflows in AI-produced Lean proofs (independent Lean versions, comparator check), Nov 2026: https://www.quantamagazine.org/update/169054/
